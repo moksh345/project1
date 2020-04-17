@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        h1 {
+            color: rgb(0, 0, 0);
+            text-align: center;
+        }
+
+        body {
+            background-image: url("https://media.istockphoto.com/photos/open-book-picture-id160389096?k=6&m=160389096&s=612x612&w=0&h=N7rIxQPZSa_NSMSr9E491ECQVapL0HHGrYh3agGBwbw=");
+            background-blend-mode: soft-light;
+            background-size: cover;
+            /* background-image: linear-gradient(red, yellow, green); */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg"></div>
+    <div>
+        <h1>
+            Welcome to "Bibliophiles"
+        </h1>
+    </div>
+
+    <p>
+        <h3>In order to access the books from our website, you need to register to our website.<br>
+            Please register here<br></h3>
+    </p>
+    <form action="/action_page.php">
+        <div class="form-group">
+            <label for="user">
+                <h3>Username</h3> :
+            </label>
+            <input type="text" class="form-control" id="Username">
+        </div>
+        <div class="form-group">
+            <label for="pwd">
+                <h3> Password:</h3>
+            </label>
+            <input type="password" class="form-control" id="pwd">
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox"> Remember me</label>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</body>
+
+</html>
