@@ -62,6 +62,7 @@ def authenticate():
         if userdata is not None:
             # validate username and password
             if userdata.username == name and userdata.password == password:
+                # adding the username as session variable
                 session[name] = name
                 return render_template("registered.html", name=name)
             # user verification failed
@@ -71,6 +72,11 @@ def authenticate():
         else:
             return render_template("index1.html", message="You have not registered. Please register to login.")
             
+@app.route('/logout')
+def logout():
+   # remove the username from the session if it is there
+   session.pop(name, None)
+   return redirect(url_for('home'))
 
 
 
