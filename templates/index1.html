@@ -36,7 +36,7 @@
         <input type="password" password="password" placeholder="Enter password"><br><br>
         <button>Register</button>
     </form> -->
-    <form action="{{url_for('register')}}" method="post">
+    <form action="/register" method="post">
         <div class="form-group">
             <label for="user">
                 <h3>Username</h3> :
@@ -47,7 +47,7 @@
             <label for="pwd">
                 <h3> Password:</h3>
             </label>
-            <input type="password" class="form-control" id="pwd">
+            <input type="password" name="password" class="form-control" id="pwd">
         </div>
         <div class="checkbox">
             <label><input type="checkbox"> Remember me</label>
