@@ -23,7 +23,7 @@ db.init_app(app)
 
 @app.route("/")
 def home():    
-    return render_template('index1.html')
+    return render_template('index1.html',message="")
 
 @app.route("/register", methods=["POST","GET"])
 def register():
@@ -34,7 +34,7 @@ def register():
         name = request.form.get("name")
         password = request.form.get("password")
         userdata = Users(username=name, password=password, timestamp=str(datetime.now()))
-        print(f"added the user {name}{password}******************************************************")
+        # print(f"added the user {name}{password}******************************************************")
         try:
             db.session.add(userdata)
             db.session.commit()
@@ -53,19 +53,40 @@ def Member():
 
 @app.route("/auth",methods = ["GET","POST"])
 def authenticate():
-    Users.query.all()
-    name = request.form.get("name")
-    password = request.form.get("password")
+    if request.method == "GET":
+        return "please submit the form/ Invalid login request"
+    else:
+        name = request.form.get("name")
+        password = request.form.get("password")
+        userdata = Users.query.filter_by(username=name).first()
+        if userdata is not None:
+            # validate username and password
+            if userdata.username == name and userdata.password == password:
+                session[name] = name
+                return render_template("registered.html", name=name)
+            # user verification failed
+            else:
+                return render_template("index1.html", message="Invalid username/password.")
+        # new user
+        else:
+            return render_template("index1.html", message="You have not registered. Please register to login.")
+            
+
+
+
+    # Users.query.all()
+    # name = request.form.get("name")
+    # password = request.form.get("password")
     
-    try:
-        Member = db.session.query(Users).filter(Users.username == username).all()
-        print(Member[0].username)
-        # session['username'] = request.form.get("Email")
-        # return redirect(url_for('indexed'))  
-        return render_template("users.html") 
+    # try:
+    #     Member = db.session.query(Users).filter(Users.username == username).all()
+    #     print(Member[0].username)
+    #     # session['username'] = request.form.get("Email")
+    #     # return redirect(url_for('indexed'))  
+    #     return render_template("users.html") 
     
-    except Exception :
-	    return render_template("error.html", errors = "Details are already given")
+    # except Exception :
+	#     return render_template("error.html", errors = "Details are already given")
         
 
 
