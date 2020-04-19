@@ -51,6 +51,24 @@ def Member():
       return render_template("users.html", Users=userlist)
 
 
+@app.route("/auth",methods = ["GET","POST"])
+def authenticate():
+    Users.query.all()
+    name = request.form.get("name")
+    password = request.form.get("password")
+    
+    try:
+        Member = db.session.query(Users).filter(Users.username == username).all()
+        print(Member[0].username)
+        # session['username'] = request.form.get("Email")
+        # return redirect(url_for('indexed'))  
+        return render_template("users.html") 
+    
+    except Exception :
+	    return render_template("error.html", errors = "Details are already given")
+        
+
+
  
 
 

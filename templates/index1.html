@@ -49,10 +49,23 @@
             </label>
             <input type="password" name="password" class="form-control" id="pwd">
         </div>
+        <div>
+            <h2>Age :</h2>
+            <input type="number" placeholder="Age" name="age">
+
+            <h2>Gender:</h2>
+
+            <h3>Male</h3>
+            <input type="radio" id="male" name="gender" value="male">
+
+            <h3>Female</h3>
+            <input type="radio" id="female" name="gender" value="female">
+        </div>
         <div class="checkbox">
             <label><input type="checkbox"> Remember me</label>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" formaction="auth" class="login" value="Login">Login</button>
     </form>
 </body>
 
