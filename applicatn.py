@@ -64,7 +64,7 @@ def authenticate():
             if userdata.username == name and userdata.password == password:
                 # adding the username as session variable
                 session[name] = name
-                return render_template("registered.html", name=name)
+                return render_template("login.html", name=name)
             # user verification failed
             else:
                 return render_template("index1.html", message="Invalid username/password.")
