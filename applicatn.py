@@ -6,7 +6,7 @@ from flask import Flask, render_template, request
 from flask import Flask, session,url_for,redirect
 from flask import flash
 from flask_session import Session
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine,desc
 from sqlalchemy.orm import scoped_session, sessionmaker
 from flask_sqlalchemy import SQLAlchemy
 from udb import *
@@ -33,11 +33,12 @@ def register():
         Users.query.all()
         name = request.form.get("name")
         password = request.form.get("password")
-        userdata = Users(username=name, password=password, timestamp=str(datetime.now()))
-        # print(f"added the user {name}{password}******************************************************")
+        userdata = Users(username=name, password=password)
+        # print(f"added the user {name}{password}, timestamp=str(datetime.now())******************************************************")
         try:
             db.session.add(userdata)
             db.session.commit()
+            # Registration is succesfull page is shown
             return render_template("registered.html", name=name, password=password)
         except Exception :
 	        return render_template("error.html", error = "Registration not succesfull")
@@ -47,7 +48,7 @@ def register():
 def Member():
       """List all users."""
      
-      userlist = Users.query.all()
+      userlist = Users.query.order_by(desc(Users.timestamp)).all()
       return render_template("users.html", Users=userlist)
 
 
