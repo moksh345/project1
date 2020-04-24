@@ -79,6 +79,18 @@ def logout():
    session.pop(name, None)
    return redirect(url_for('home'))
 
+app.route("/review",methods=["GET", "POST"])
+def review():
+    if request.method == "POST":
+        return render_template('review.html')
+        # rating = request.form.get("rating")
+        # print(rating)
+        # review = request.form.get("review")
+        # print(review)
+        # return render_template("user.html", user=user_email, books=books)
+    else:
+        # flash("You are not logged in!")
+        return render_template('review.html')
 
 
     # Users.query.all()
